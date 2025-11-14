@@ -21,7 +21,7 @@ https://dribbble.com/search/e-commerce
 swiperjs.com/demos
 
 Políticas de accesibilidad:
-Utilizar etiquetas semánticas de HTML 5 para el estructurado de la página como <header>, <nav>, <main>, <section>, <footer>, entre otros. 
+Utilizar etiquetas semánticas de HTML 5 para el estructurado de la página como header, nav, main, section, footer, entre otros. 
 
 Recursos:
 https://accesibilidadenlaweb.com.ar/7claves/
@@ -35,8 +35,11 @@ Api: https://fakestoreapi.com/
 
 Funcionalidad o lógica de negocio de la aplicación 
 Listar los productos consumidos de la API y mostrarlos en cards
+
 Cada producto mostrado debe tener un evento o acción que despliegue un modal con los detalles del producto: Título, precio, descripción.
+
 El modal debe poder cerrarse desde la opción ‘X’  o desde el botón “agregar al carrito” y regresar al listado de los productos.
+
 Cuando se agrega al carrito el producto, éste debe ser almacenado en el localstorage y debe mostrar mostrar un mensaje al usuario que el producto se agregó al carrito
 dentro de la barra de navegación debe aparecer el icono de carrito. El icono debe tener un evento lo cual abrirá un sidebar o modal con el listado de los productos seleccionados previamente.
 
@@ -47,8 +50,10 @@ btn eliminar: elimina el producto de la lista.
 precio final del producto: debe variar de acuerdo a la cantidad del producto elegido por el precio. 
 * Cada acción debe actualizar el localstorage
 
-El side debe tener un btn finalizar compra, lo cual limpie el carrito de compras, limpie datos del localstorage  y muestre un mensaje al usuario.  
-El sidebar debe tener otro btn eliminar el cual elimine todos los productos del carrito, y borre los datos del localstorage. 
+El side debe tener un btn finalizar compra, lo cual limpie el carrito de compras, limpie datos del localstorage  y muestre un mensaje al usuario. 
+
+El sidebar debe tener otro btn eliminar el cual elimine todos los productos del carrito, y borre los datos del localstorage.
+
 Por último, se debe agregar un buscador, para poder filtrar productos o buscar un producto
 
 MODO DE EVALUACIÓN             
