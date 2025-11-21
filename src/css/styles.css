@@ -1,0 +1,119 @@
+/* ------------------------------------------------ */
+/* RESET SIMPLE                                      */
+/* ------------------------------------------------ */
+body {
+  background: #f8f9fa;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+
+/* ------------------------------------------------ */
+/* NAVBAR / HEADER                                   */
+/* ------------------------------------------------ */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.search-container {
+  width: 250px;
+}
+
+#cartBtn {
+  font-size: 1.4rem;
+}
+
+/* ------------------------------------------------ */
+/* PRODUCTOS                                         */
+/* ------------------------------------------------ */
+
+#productsContainer .card {
+  transition: transform 0.15s ease;
+  cursor: pointer;
+}
+
+#productsContainer .card:hover {
+  transform: scale(1.03);
+}
+
+#productsContainer img {
+  max-height: 180px;
+  object-fit: contain;
+}
+
+/* ------------------------------------------------ */
+/* SIDEBAR DEL CARRITO                               */
+/* ------------------------------------------------ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -380px; /* Oculto inicialmente */
+  height: 100vh;
+  width: 350px;
+  background: #fff;
+  box-shadow: -3px 0 12px rgba(0,0,0,0.12);
+  padding: 20px;
+  z-index: 2000;
+  overflow-y: auto;
+  transition: right 0.35s ease;
+}
+
+.sidebar.open {
+  right: 0; /* Se abre */
+}
+
+#cartSidebarList .cart-item {
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
+}
+
+#cartSidebarList img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+/* Botones de cantidad */
+.cart-qty-btn {
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background: #eee;
+  cursor: pointer;
+}
+
+.cart-qty-btn:hover {
+  background: #ddd;
+}
+
+/* ------------------------------------------------ */
+/* MODAL PRODUCTO (Bootstrap ya se encarga)          */
+/* ------------------------------------------------ */
+
+#modalImg {
+  max-height: 250px;
+  object-fit: contain;
+}
+
+/* ------------------------------------------------ */
+/* SWEETALERT2                                       */
+/* ------------------------------------------------ */
+
+.swal2-popup {
+  font-size: 0.9rem !important;
+}
+
+/* ------------------------------------------------ */
+/* MEDIA QUERIES                                     */
+/* ------------------------------------------------ */
+
+@media (max-width: 480px) {
+  .search-container {
+    width: 150px;
+  }
+
+  .sidebar {
+    width: 280px;
+  }
+}
