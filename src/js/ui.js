@@ -4,6 +4,8 @@
 // -----------------------------
 // Render de productos
 // -----------------------------
+import { isFavorite, toggleFavorite } from "./favorites.js";
+
 export function renderProducts(container, products, onClickProduct) {
   container.innerHTML = "";
 
@@ -11,9 +13,18 @@ export function renderProducts(container, products, onClickProduct) {
     const card = document.createElement("div");
     card.className = "col-md-4 col-lg-3";
 
+    const favIcon = isFavorite(product.id) ? "⭐" : "☆";
+
     card.innerHTML = `
       <div class="card h-100 shadow-sm p-2 product-card" data-id="${product.id}">
+        <div class="d-flex justify-content-end">
+          <span class="favorite-icon" style="font-size:22px; cursor:pointer;">
+            ${favIcon}
+          </span>
+        </div>
+
         <img src="${product.image}" class="card-img-top" alt="${product.title}">
+        
         <div class="card-body">
           <h6 class="card-title">${product.title}</h6>
           <p class="text-primary fw-bold">$${product.price}</p>
@@ -21,7 +32,26 @@ export function renderProducts(container, products, onClickProduct) {
       </div>
     `;
 
-    // Click abre modal del producto
+    // ⭐ togglear favorito
+    const favBtn = card.querySelector(".favorite-icon");
+    favBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const wasFav = isFavorite(product.id);
+    
+      toggleFavorite(product);
+    
+      // Actualizar icono
+      favBtn.textContent = isFavorite(product.id) ? "⭐" : "☆";
+    
+      // Mostrar toast
+      if (!wasFav) {
+        showToastFav("Agregado a favoritos");
+      } else {
+        showToastFav("Quitado de favoritos");
+      }
+    });
+
+    // Click para abrir modal
     card.querySelector(".product-card").addEventListener("click", () => {
       onClickProduct(product);
     });
@@ -29,6 +59,7 @@ export function renderProducts(container, products, onClickProduct) {
     container.appendChild(card);
   });
 }
+
 
 // -----------------------------
 // Render del carrito (sidebar)
@@ -78,9 +109,22 @@ export function renderCartSidebar(container, cart, changeQty, removeFromCart) {
 
     // Botón eliminar producto
     row.querySelector('[data-action="remove"]').addEventListener("click", () => {
-      removeFromCart(item.id);
-    });
 
+      Swal.fire({
+        title: "¿Eliminar producto?",
+        text: "Este producto se quitará del carrito",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Sí, eliminar",
+        cancelButtonText: "No"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          removeFromCart(item.id);
+          Swal.fire("Eliminado", "Producto eliminado", "success");
+        }
+      });
+    });
+    
     container.appendChild(row);
   });
 }
@@ -107,3 +151,43 @@ export function showToast(msg) {
     showConfirmButton: false
   });
 }
+export function showToastFav(msg) {
+  Swal.fire({
+    toast: true,
+    position: "top-end",
+    icon: "info",
+    title: msg,
+    timer: 1200,
+    showConfirmButton: false
+  });
+}
+// -----------------------------
+// Render del sidebar de favoritos
+// -----------------------------
+export function renderFavoritesSidebar(container, favorites, onToggle) {
+  container.innerHTML = "";
+
+  if (favorites.length === 0) {
+    container.innerHTML = `<p class="text-muted">No hay favoritos.</p>`;
+    return;
+  }
+
+  favorites.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "cart-item d-flex align-items-center justify-content-between";
+
+    row.innerHTML = `
+      <div class="d-flex align-items-center gap-2">
+        <img src="${item.image}" width="60" />
+        <p class="m-0 fw-bold">${item.title}</p>
+      </div>
+
+      <button class="btn btn-danger btn-sm">Quitar</button>
+    `;
+
+    row.querySelector("button").addEventListener("click", () => onToggle(item));
+
+    container.appendChild(row);
+  });
+}
+

@@ -36,11 +36,13 @@ export function addToCart(product) {
 
   if (existing) {
     existing.quantity++;
+    saveCart();
+    return existing.quantity; // ← DEVUELVO LA NUEVA CANTIDAD
   } else {
     cart.push({ ...product, quantity: 1 });
+    saveCart();
+    return 1; // ← primera vez
   }
-
-  saveCart();
 }
 
 export function changeQuantity(id, delta) {
@@ -66,3 +68,5 @@ export function clearCart() {
   cart = [];
   saveCart();
 }
+
+

@@ -11,16 +11,30 @@ body {
 /* NAVBAR / HEADER                                   */
 /* ------------------------------------------------ */
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
 }
 
 .search-container {
-  width: 250px;
+  max-width: 500px;
+}
+/* ------------------------------------------------ */
+/* MENÚ VERTICAL IZQUIERDO                           */
+/* ------------------------------------------------ */
+.menu-left {
+  width: 180px;
+  background: #fff;
+  min-height: calc(100vh - 70px);
 }
 
-#cartBtn {
-  font-size: 1.4rem;
+.menu-left button {
+  text-align: left;
+  font-size: 1rem;
+}
+
+.menu-left button.active {
+  background: #0d6efd;
+  color: white;
 }
 
 /* ------------------------------------------------ */
@@ -48,19 +62,19 @@ body {
 .sidebar {
   position: fixed;
   top: 0;
-  right: -380px; /* Oculto inicialmente */
+  right: -380px;
   height: 100vh;
   width: 350px;
   background: #fff;
   box-shadow: -3px 0 12px rgba(0,0,0,0.12);
   padding: 20px;
-  z-index: 2000;
+  z-index: 5000;
   overflow-y: auto;
   transition: right 0.35s ease;
 }
 
 .sidebar.open {
-  right: 0; /* Se abre */
+  right: 0;
 }
 
 #cartSidebarList .cart-item {
@@ -88,7 +102,7 @@ body {
 }
 
 /* ------------------------------------------------ */
-/* MODAL PRODUCTO (Bootstrap ya se encarga)          */
+/* MODAL PRODUCTO                                    */
 /* ------------------------------------------------ */
 
 #modalImg {
@@ -108,12 +122,37 @@ body {
 /* MEDIA QUERIES                                     */
 /* ------------------------------------------------ */
 
-@media (max-width: 480px) {
-  .search-container {
-    width: 150px;
-  }
-
-  .sidebar {
-    width: 280px;
+@media (max-width: 768px) {
+  .menu-left {
+    width: 140px;
   }
 }
+
+@media (max-width: 480px) {
+  .search-container {
+    max-width: 200px;
+  }
+}
+.favorite-icon {
+  color: #f6c400;
+  transition: transform 0.2s ease;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.2);
+}
+#cartBtn {
+  position: relative;
+}
+
+/* badge dentro del botón, bien alineado */
+#cartBtn .badge {
+  position: absolute;
+  top: -4px;    /* distancia desde el borde superior del botón */
+  right: -4px;  /* distancia desde el borde derecho del botón */
+  transform: none !important;
+  font-size: 0.7rem;
+  padding: 4px 6px;
+}
+
+
