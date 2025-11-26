@@ -281,7 +281,52 @@ header section p {
   border-radius: 12px;
   font-weight: 600;
   padding: 10px 16px;
+} 
+
+
+/* ============================================= */
+/*  BOTONES GENERALES                            */
+/* ============================================= */
+
+button, .btn {
+  border-radius: 10px;
+  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+  font-weight: 500;
 }
+
+/* Hover general para todos los botones */
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* Botones principales (azules) */
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5cd5;
+}
+
+/* Botones rojos (vaciar carrito) */
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* Botón del carrito */
+#cartBtn:hover {
+  transform: scale(1.08);
+}
+
+/* Botón de menú izquierdo activo */
+.menu-left .active {
+  transform: translateX(3px);
+  box-shadow: 0 0 10px rgba(13,110,253,0.4);
+}
+
+
 
 
 
