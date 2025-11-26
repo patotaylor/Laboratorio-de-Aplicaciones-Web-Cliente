@@ -13,30 +13,30 @@ Se actualiza continuamente a medida que se agrega o completa trabajo.
   - [ ] Vista dedicada cuando se presiona “Favoritos”
   - [ ] Guardar favoritos en localStorage
 
-- [ ] Mejora del menú lateral:
-  - [ ] Estado activo (highlight)
-  - [ ] Transiciones suaves entre "Productos" ↔ "Favoritos"
-  - [ ] Animación de entrada/salida
+- [x] Mejora del menú lateral:
+  - [x] Estado activo (highlight)
+  - [x] Transiciones suaves entre "Productos" ↔ "Favoritos"
+  - [x] Animación de entrada/salida
 
 - [ ] Ordenamiento de productos:
   - [ ] Ordenar por precio ascendente
   - [ ] Ordenar por precio descendente
   - [ ] Ordenar por nombre A–Z / Z–A (opcional)
 
-- [ ] Carrito:
-  - [ ] Animación cuando se agrega un producto (cantidad que aparece, rebote, etc.)
-  - [ ] Mejorar diseño general del carrito (responsive y visual)
+- [x] Carrito:
+  - [x] Animación cuando se agrega un producto (cantidad que aparece, rebote, etc.)
+  - [x] Mejorar diseño general del carrito (responsive y visual)
 
 ---
 
 ## 🎨 Mejoras de UI/UX
 
-- [ ] Ajustar tamaño del sidebar del carrito
-- [ ] Mejorar el responsive del menú lateral
-- [ ] Menú hamburguesa para mobile:
-  - [ ] Mostrar/ocultar menú lateral con animación
-  - [ ] Oscurecer fondo cuando está abierto
-  - [ ] Animación tipo slide
+- [x] Ajustar tamaño del sidebar del carrito
+- [x] Mejorar el responsive del menú lateral
+- [x] Menú hamburguesa para mobile:
+  - [x] Mostrar/ocultar menú lateral con animación
+  - [x] Oscurecer fondo cuando está abierto
+  - [x] Animación tipo slide
 
 - [ ] Animación de “explosión” cuando un producto se agrega a favoritos
 - [ ] Agregar un loader (spinner) al cargar productos desde la API
@@ -50,15 +50,15 @@ Se actualiza continuamente a medida que se agrega o completa trabajo.
 - [ ] Centralizar manejo de SweetAlerts en notify.js
 - [ ] Crear helper general para localStorage (local.js)
 - [ ] Modularizar animaciones (animations.js)
-- [ ] Revisar duplicación de código en app.js
-- [ ] Simplificar renderizado de productos (usar una sola función base)
+- [x] Revisar duplicación de código en app.js
+- [x] Simplificar renderizado de productos (usar una sola función base)
 
 ---
 
 ## 🐛 Bugs conocidos
 
-- [ ] A veces no actualiza bien el contador del carrito
-- [ ] A veces el modal no limpia correctamente los datos anteriores
+- [x] A veces no actualiza bien el contador del carrito
+- [x] A veces el modal no limpia correctamente los datos anteriores
 
 ---
 
