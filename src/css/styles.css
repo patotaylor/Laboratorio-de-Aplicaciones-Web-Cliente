@@ -374,6 +374,52 @@ button:hover, .btn:hover {
 }
 
 
+/* ============================================= */
+/* MENÚ PRODUCTOS/FAVORITOS                      */
+/* ============================================= */
+
+.menu-left {
+  background-color: #ffffff;
+  border-right: 1px solid #e5e5e5;
+}
+
+.menu-left button {
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+  font-weight: 500;
+  background-color: #f8f9fa;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+.menu-left button i {
+  font-size: 1.1rem;
+}
+
+/* hover */
+.menu-left button:hover {
+  background-color: #e9ecef;
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+/* estado activo  */
+.menu-left button.active {
+  background-color: #0d6efd;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(13,110,253,0.4);
+}
+
+.menu-left button.active i {
+  color: #ffd966;
+}
+
+
+
 
 
 
