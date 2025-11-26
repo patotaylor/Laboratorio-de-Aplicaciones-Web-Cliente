@@ -202,6 +202,39 @@ header section p {
   margin: 0 auto 1.5rem;
 }
 
+/* ============================================= */
+/* MEJORAS - MENÚ IZQ Y CARDS           */
+/* ============================================= */
+
+/* Menú vertical más moderno */
+.menu-left {
+  border-right: 1px solid #e4e4e4;
+  background-color: #ffffff;
+}
+
+.menu-left button {
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  border: none;
+}
+
+.menu-left button:hover {
+  background: #e9ecef;
+}
+
+/* Cards de productos con sombra suave */
+#productsContainer .card {
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+#productsContainer .card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+
 
 
 
