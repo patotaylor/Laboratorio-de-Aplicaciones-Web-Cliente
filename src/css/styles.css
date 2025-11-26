@@ -325,6 +325,55 @@ button:hover, .btn:hover {
   transform: translateX(3px);
   box-shadow: 0 0 10px rgba(13,110,253,0.4);
 }
+/* ============================================= */
+/* SIDEBAR DEL CARRITO                           */
+/* ============================================= */
+
+/* Panel más moderno */
+.sidebar {
+  border-left: 2px solid #0d6efd;
+  box-shadow: -4px 0 18px rgba(0,0,0,0.15);
+  border-radius: 0 0 0 12px;
+}
+
+/* Título del carrito */
+#cartSidebar h4 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Cada ítem dentro del carrito */
+#cartSidebarList .cart-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+/* Imagen dentro del carrito */
+#cartSidebarList img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Botón cerrar (la X del carrito) */
+#closeSidebar {
+  transform: scale(1);
+  transition: transform 0.1s ease;
+}
+
+#closeSidebar:hover {
+  transform: scale(1.2);
+}
+
+/* Botones finales del carrito */
+.sidebar-footer .btn {
+  border-radius: 16px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+
 
 
 
