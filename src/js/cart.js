@@ -13,6 +13,15 @@ function saveCart() {
   window.dispatchEvent(new CustomEvent("cart-updated"));
 }
 
+// Helper para parsear precio y cantidad a números
+export function parsePrice(price) {
+  return typeof price === 'string' ? parseFloat(price) : price;
+}
+
+export function parseQuantity(quantity) {
+  return typeof quantity === 'string' ? parseInt(quantity) : quantity;
+}
+
 // -----------------------------
 // Getters
 // -----------------------------
@@ -25,23 +34,25 @@ export function getCartCount() {
 }
 
 export function getCartTotal() {
-  return cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
+  return cart.reduce((acc, item) => {
+    return acc + (parseQuantity(item.quantity) * parsePrice(item.price));
+  }, 0);
 }
 
 // -----------------------------
 // Mutaciones
 // -----------------------------
-export function addToCart(product) {
+export function addToCart(product, quantity = 1) {
   const existing = cart.find((p) => p.id === product.id);
 
   if (existing) {
-    existing.quantity++;
+    existing.quantity += quantity;
     saveCart();
     return existing.quantity; // ← DEVUELVO LA NUEVA CANTIDAD
   } else {
-    cart.push({ ...product, quantity: 1 });
+    cart.push({ ...product, quantity: quantity });
     saveCart();
-    return 1; // ← primera vez
+    return quantity; // ← devuelvo la cantidad agregada
   }
 }
 

@@ -12,13 +12,18 @@ import {
   clearCart,
   getCartCount,
   getCartTotal,
+  parsePrice,
+  parseQuantity,
 } from "./cart.js";
 
 import {
   renderProducts,
   renderCartSidebar,
+  renderFavoritesSidebar,
   updateCartBadge,
-  showToast
+  showToast,
+  showError,
+  showNoProductsMessage
 } from "./ui.js";
 
 import { initSearch } from "./search.js";
@@ -28,10 +33,6 @@ import {
   toggleFavorite,
   isFavorite
 } from "./favorites.js";
-
-import {
-  renderFavoritesSidebar
-} from "./ui.js";
 
 
 
@@ -55,15 +56,44 @@ document.addEventListener("DOMContentLoaded", async () => {
   // -----------------------------
   // Cargar productos
   // -----------------------------
-  const products = await fetchProducts();
-  window.allProducts = products;
+  let products = [];
+  
+  try {
+    products = await fetchProducts();
+    
+    if (!products || products.length === 0) {
+      showError("No se encontraron productos disponibles.", "Sin productos");
+      showNoProductsMessage(productsContainer);
+      window.allProducts = [];
+      return;
+    }
+    
+    window.allProducts = products;
+  } catch (error) {
+    console.error("Error al cargar productos:", error);
+    showError(
+      error.message || "Ocurrió un error al intentar cargar los productos. Por favor, verifica tu conexión e intenta nuevamente.",
+      "Error de conexión"
+    );
+    showNoProductsMessage(productsContainer);
+    window.allProducts = [];
+    return;
+  }
 
-  function showProducts() {
-    renderProducts(productsContainer, products, (product) => {
-      openProductModal(product, () => {
-        const qty = addToCart(product);
-        showToast(`Agregado al carrito - Cantidad: ${qty}`);
-      });
+  // Callback reutilizable para abrir modal y agregar al carrito
+  const handleProductClick = (product, quantity) => {
+    const qty = addToCart(product, quantity);
+    showToast(`Agregado al carrito - Cantidad: ${qty}`);
+  };
+
+  function showProducts(productList = products) {
+    if (!productList || productList.length === 0) {
+      showNoProductsMessage(productsContainer);
+      return;
+    }
+    
+    renderProducts(productsContainer, productList, (product) => {
+      openProductModal(product, handleProductClick);
     });
   }
 
@@ -86,14 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   menuFavorites.addEventListener("click", () => {
     activateMenu(menuFavorites);
-
-    const favs = getFavorites();
-    renderProducts(productsContainer, favs, (product) => {
-      openProductModal(product, () => {
-        const qty = addToCart(product);
-        showToast(`Agregado al carrito - Cantidad: ${qty}`);
-      });
-    });
+    showProducts(getFavorites());
   });
 
 
@@ -102,8 +125,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // -----------------------------
   searchInput.addEventListener("input", () => {
     const text = searchInput.value.toLowerCase().trim();
-
-    let active = menuFavorites.classList.contains("active")
+    const active = menuFavorites.classList.contains("active")
       ? getFavorites()
       : products;
 
@@ -111,12 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       p.title.toLowerCase().includes(text)
     );
 
-    renderProducts(productsContainer, filtered, (product) => {
-      openProductModal(product, () => {
-        addToCart(product);
-        showToast("Producto agregado al carrito");
-      });
-    });
+    showProducts(filtered);
   });
 
 
@@ -152,19 +169,33 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Confirmar compra
   checkoutBtn.addEventListener("click", () => {
     const items = getCart();
+    
+    if (items.length === 0) {
+      Swal.fire("Carrito vacío", "Agrega productos al carrito antes de finalizar la compra", "warning");
+      return;
+    }
+
+    // Calcular total usando helpers
     const total = getCartTotal();
 
-    let resumen = items.map(p =>
-      `${p.title} (x${p.quantity}) - $${(p.price * p.quantity).toFixed(2)}`
-    ).join("<br>");
+    let resumen = items.map(p => {
+      const price = parsePrice(p.price);
+      const quantity = parseQuantity(p.quantity);
+      const subtotal = price * quantity;
+      return `<li>${p.title} <span style="color: #666;">|</span> x${quantity} <span style="color: #666;">|</span> $${subtotal.toFixed(2)}</li>`;
+    }).join("");
 
     Swal.fire({
       title: "Confirmar compra",
       html: `
-        <p><strong>Resumen:</strong></p>
-        <p>${resumen}</p>
-        <hr>
-        <p><strong>Total: $${total.toFixed(2)}</strong></p>
+        <div style="text-align: left;">
+          <p><strong>Resumen:</strong></p>
+          <ul style="text-align: left; padding-left: 20px; margin: 10px 0;">
+            ${resumen}
+          </ul>
+          <hr>
+          <p style="text-align: left;"><strong>Total: $${total.toFixed(2)}</strong></p>
+        </div>
       `,
       icon: "info",
       showCancelButton: true,
@@ -192,17 +223,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   // -----------------------------
   updateCartBadge(getCartCount());
   window.addEventListener("favorites-updated", () => {
-
-    // Actualizar iconos
     if (menuFavorites.classList.contains("active")) {
-      const favs = getFavorites();
-      renderProducts(productsContainer, favs, (product) => {
-        openProductModal(product, () => {
-          addToCart(product);
-          showToast("Producto agregado al carrito");
-        });
-      });
+      showProducts(getFavorites());
     }
-  });  
+  });
+
+  // -----------------------------
+  // Botón volver arriba
+  // -----------------------------
+  const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+  
+  // Throttle para optimizar el evento de scroll
+  let scrollTimeout;
+  const handleScroll = () => {
+    if (scrollTimeout) return;
+    scrollTimeout = setTimeout(() => {
+      scrollToTopBtn.classList.toggle("show", window.pageYOffset > 300);
+      scrollTimeout = null;
+    }, 100);
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+
+  // Scroll suave hacia arriba al hacer clic
+  scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
 });
 
