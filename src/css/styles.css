@@ -1,5 +1,5 @@
 /* ------------------------------------------------ */
-/* RESET SIMPLE                                      */
+/* RESET SIMPLE / TIPOGRAFÍA                       */
 /* ------------------------------------------------ */
 body {
   background: #f8f9fa;
@@ -8,8 +8,9 @@ body {
 }
 
 /* ------------------------------------------------ */
-/* NAVBAR / HEADER                                   */
+/* NAVBAR / HEADER                                 */
 /* ------------------------------------------------ */
+
 .logo {
   font-size: 1.6rem;
   font-weight: bold;
@@ -18,146 +19,6 @@ body {
 .search-container {
   max-width: 500px;
 }
-/* ------------------------------------------------ */
-/* MENÚ VERTICAL IZQUIERDO                           */
-/* ------------------------------------------------ */
-.menu-left {
-  width: 180px;
-  background: #fff;
-  min-height: calc(100vh - 70px);
-}
-
-.menu-left button {
-  text-align: left;
-  font-size: 1rem;
-}
-
-.menu-left button.active {
-  background: #0d6efd;
-  color: white;
-}
-
-/* ------------------------------------------------ */
-/* PRODUCTOS                                         */
-/* ------------------------------------------------ */
-
-#productsContainer .card {
-  transition: transform 0.15s ease;
-  cursor: pointer;
-}
-
-#productsContainer .card:hover {
-  transform: scale(1.03);
-}
-
-#productsContainer img {
-  max-height: 180px;
-  object-fit: contain;
-}
-
-/* ------------------------------------------------ */
-/* SIDEBAR DEL CARRITO                               */
-/* ------------------------------------------------ */
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  right: -380px;
-  height: 100vh;
-  width: 350px;
-  background: #fff;
-  box-shadow: -3px 0 12px rgba(0,0,0,0.12);
-  padding: 20px;
-  z-index: 5000;
-  overflow-y: auto;
-  transition: right 0.35s ease;
-}
-
-.sidebar.open {
-  right: 0;
-}
-
-#cartSidebarList .cart-item {
-  border-bottom: 1px solid #ddd;
-  padding: 12px 0;
-}
-
-#cartSidebarList img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-}
-
-/* Botones de cantidad */
-.cart-qty-btn {
-  padding: 2px 7px;
-  border-radius: 4px;
-  border: 1px solid #888;
-  background: #eee;
-  cursor: pointer;
-}
-
-.cart-qty-btn:hover {
-  background: #ddd;
-}
-
-/* ------------------------------------------------ */
-/* MODAL PRODUCTO                                    */
-/* ------------------------------------------------ */
-
-#modalImg {
-  max-height: 250px;
-  object-fit: contain;
-}
-
-/* ------------------------------------------------ */
-/* SWEETALERT2                                       */
-/* ------------------------------------------------ */
-
-.swal2-popup {
-  font-size: 0.9rem !important;
-}
-
-/* ------------------------------------------------ */
-/* MEDIA QUERIES                                     */
-/* ------------------------------------------------ */
-
-@media (max-width: 768px) {
-  .menu-left {
-    width: 140px;
-  }
-}
-
-@media (max-width: 480px) {
-  .search-container {
-    max-width: 200px;
-  }
-}
-.favorite-icon {
-  color: #f6c400;
-  transition: transform 0.2s ease;
-}
-
-.favorite-icon:hover {
-  transform: scale(1.2);
-}
-#cartBtn {
-  position: relative;
-}
-
-/* badge dentro del botón, bien alineado */
-#cartBtn .badge {
-  position: absolute;
-  top: -4px;    /* distancia desde el borde superior del botón */
-  right: -4px;  /* distancia desde el borde derecho del botón */
-  transform: none !important;
-  font-size: 0.7rem;
-  padding: 4px 6px;
-}
-
-/* ============================================= */
-/* MEJORAS- NAVBAR                     */
-/* ============================================= */
 
 /* Navbar con efecto suave y separación */
 .navbar {
@@ -182,14 +43,15 @@ body {
   color: #0d6efd;
 }
 
-/* ============================================= */
-/* MEJORAS - HERO                       */
-/* ============================================= */
+/* ------------------------------------------------ */
+/* HERO                                             */
+/* ------------------------------------------------ */
 
 header section {
   background: linear-gradient(180deg, #212529, #343a40);
   padding-top: 4rem;
   padding-bottom: 4rem;
+  text-align: center;
 }
 
 header section h1 {
@@ -202,31 +64,67 @@ header section p {
   margin: 0 auto 1.5rem;
 }
 
-/* ============================================= */
-/* MEJORAS - MENÚ IZQ Y CARDS                    */
-/* ============================================= */
+/* ------------------------------------------------ */
+/* MENÚ VERTICAL IZQUIERDO                         */
+/* ------------------------------------------------ */
 
-/* Menú vertical más moderno */
 .menu-left {
-  border-right: 1px solid #e4e4e4;
+  width: 180px;
+  min-height: calc(100vh - 70px);
   background-color: #ffffff;
+  border-right: 1px solid #e5e5e5;
 }
 
 .menu-left button {
-  border-radius: 12px;
-  margin-bottom: 8px;
-  font-weight: 500;
   border: none;
-}
-
-.menu-left button:hover {
-  background: #e9ecef;
-}
-
-/* Cards de productos con sombra suave */
-#productsContainer .card {
   border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-start;
+  font-weight: 500;
+  background-color: #f8f9fa;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.menu-left button i {
+  font-size: 1.1rem;
+}
+
+/* hover */
+.menu-left button:hover {
+  background-color: #e9ecef;
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* estado activo */
+.menu-left button.active {
+  background-color: #0d6efd;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(13, 110, 253, 0.4);
+}
+
+.menu-left button.active i {
+  color: #ffd966;
+}
+
+/* ------------------------------------------------ */
+/* PRODUCTOS (CARDS)                               */
+/* ------------------------------------------------ */
+
+#productsContainer .card {
+  border: none;
+  border-radius: 12px;
+  padding: 10px;
+  background: #ffffff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
 #productsContainer .card:hover {
@@ -234,15 +132,93 @@ header section p {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
+#productsContainer img {
+  max-height: 180px;
+  object-fit: contain;
+  border-radius: 8px;
+}
 
-/* ============================================= */
-/* MODAL DE PRODUCTO          */
-/* ============================================ */
+/* ------------------------------------------------ */
+/* SIDEBAR DEL CARRITO                             */
+/* ------------------------------------------------ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -380px;
+  height: 100vh;
+  width: 350px;
+  background: #fff;
+  padding: 20px;
+  z-index: 5000;
+  overflow-y: auto;
+  transition: right 0.35s ease;
+  border-left: 2px solid #0d6efd;
+  box-shadow: -4px 0 18px rgba(0, 0, 0, 0.15);
+  border-radius: 0 0 0 12px;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+/* Título del carrito */
+#cartSidebar h4 {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+/* Cada ítem dentro del carrito */
+#cartSidebarList .cart-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+#cartSidebarList img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* Botones de cantidad */
+.cart-qty-btn {
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background: #eee;
+  cursor: pointer;
+}
+
+.cart-qty-btn:hover {
+  background: #ddd;
+}
+
+/* Botón cerrar (la X del carrito) */
+#closeSidebar {
+  transform: scale(1);
+  transition: transform 0.1s ease;
+}
+
+#closeSidebar:hover {
+  transform: scale(1.2);
+}
+
+/* Botones finales del carrito */
+.sidebar-footer .btn {
+  border-radius: 16px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+/* ------------------------------------------------ */
+/* MODAL PRODUCTO                                  */
+/* ------------------------------------------------ */
 
 #productModal .modal-content {
   border-radius: 16px;
   padding: 10px;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
   border: none;
 }
 
@@ -281,23 +257,25 @@ header section p {
   border-radius: 12px;
   font-weight: 600;
   padding: 10px 16px;
-} 
+}
 
+/* ------------------------------------------------ */
+/* BOTONES GENERALES                               */
+/* ------------------------------------------------ */
 
-/* ============================================= */
-/*  BOTONES GENERALES                            */
-/* ============================================= */
-
-button, .btn {
+button,
+.btn {
   border-radius: 10px;
-  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+  transition: background 0.15s ease, transform 0.12s ease,
+    box-shadow 0.15s ease;
   font-weight: 500;
 }
 
-/* Hover general para todos los botones */
-button:hover, .btn:hover {
+/* Hover general */
+button:hover,
+.btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Botones principales (azules) */
@@ -315,111 +293,41 @@ button:hover, .btn:hover {
   background-color: #c82333;
 }
 
-/* Botón del carrito */
+/* Botón del carrito en navbar */
+#cartBtn {
+  position: relative;
+}
+
 #cartBtn:hover {
   transform: scale(1.08);
 }
 
-/* Botón de menú izquierdo activo */
-.menu-left .active {
-  transform: translateX(3px);
-  box-shadow: 0 0 10px rgba(13,110,253,0.4);
-}
-/* ============================================= */
-/* SIDEBAR DEL CARRITO                           */
-/* ============================================= */
-
-/* Panel más moderno */
-.sidebar {
-  border-left: 2px solid #0d6efd;
-  box-shadow: -4px 0 18px rgba(0,0,0,0.15);
-  border-radius: 0 0 0 12px;
+/* badge dentro del botón, bien alineado */
+#cartBtn .badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  transform: none !important;
+  font-size: 0.7rem;
+  padding: 4px 6px;
 }
 
-/* Título del carrito */
-#cartSidebar h4 {
-  font-weight: 700;
-  margin-bottom: 10px;
+/* ------------------------------------------------ */
+/* FAVORITOS (ICONO ESTRELLA/CORAZÓN)             */
+/* ------------------------------------------------ */
+
+.favorite-icon {
+  color: #f6c400;
+  transition: transform 0.2s ease;
 }
 
-/* Cada ítem dentro del carrito */
-#cartSidebarList .cart-item {
-  padding: 14px 0;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-/* Imagen dentro del carrito */
-#cartSidebarList img {
-  width: 65px;
-  height: 65px;
-  object-fit: contain;
-  border-radius: 8px;
-}
-
-/* Botón cerrar (la X del carrito) */
-#closeSidebar {
-  transform: scale(1);
-  transition: transform 0.1s ease;
-}
-
-#closeSidebar:hover {
+.favorite-icon:hover {
   transform: scale(1.2);
 }
 
-/* Botones finales del carrito */
-.sidebar-footer .btn {
-  border-radius: 16px;
-  font-weight: 600;
-  padding: 10px;
-}
-
-
-/* ============================================= */
-/* MENÚ PRODUCTOS/FAVORITOS                      */
-/* ============================================= */
-
-.menu-left {
-  background-color: #ffffff;
-  border-right: 1px solid #e5e5e5;
-}
-
-.menu-left button {
-  border: none;
-  border-radius: 12px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: flex-start;
-  font-weight: 500;
-  background-color: #f8f9fa;
-  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
-}
-
-.menu-left button i {
-  font-size: 1.1rem;
-}
-
-/* hover */
-.menu-left button:hover {
-  background-color: #e9ecef;
-  transform: translateX(2px);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
-
-/* estado activo  */
-.menu-left button.active {
-  background-color: #0d6efd;
-  color: #ffffff;
-  box-shadow: 0 2px 10px rgba(13,110,253,0.4);
-}
-
-.menu-left button.active i {
-  color: #ffd966;
-}
-/* ============================================= */
-/* BUSCADOR ESTILO                               */
-/* ============================================= */
+/* ------------------------------------------------ */
+/* BUSCADOR (searchInput)                         */
+/* ------------------------------------------------ */
 
 #searchInput {
   border-radius: 14px;
@@ -437,9 +345,32 @@ button:hover, .btn:hover {
 #searchInput:focus {
   outline: none;
   border-color: #0d6efd;
-  box-shadow: 0 0 0 3px rgba(13,110,253,0.25);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
 }
 
+/* ------------------------------------------------ */
+/* SWEETALERT2                                     */
+/* ------------------------------------------------ */
+
+.swal2-popup {
+  font-size: 0.9rem !important;
+}
+
+/* ------------------------------------------------ */
+/* MEDIA QUERIES                                   */
+/* ------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .menu-left {
+    width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    max-width: 200px;
+  }
+}
 
 
 
