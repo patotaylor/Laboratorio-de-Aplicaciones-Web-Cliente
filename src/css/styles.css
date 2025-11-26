@@ -488,7 +488,6 @@ button:hover,
   flex-direction: column;
   gap: 6px;
 }
-
 /* Título del producto */
 #productsContainer .card .card-title {
   font-size: 0.95rem;
