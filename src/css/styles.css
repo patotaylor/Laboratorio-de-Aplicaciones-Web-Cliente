@@ -203,7 +203,7 @@ header section p {
 }
 
 /* ============================================= */
-/* MEJORAS - MENÚ IZQ Y CARDS           */
+/* MEJORAS - MENÚ IZQ Y CARDS                    */
 /* ============================================= */
 
 /* Menú vertical más moderno */
@@ -234,6 +234,54 @@ header section p {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
 }
 
+
+/* ============================================= */
+/* MODAL DE PRODUCTO          */
+/* ============================================ */
+
+#productModal .modal-content {
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  border: none;
+}
+
+#productModal .modal-header {
+  border: none;
+  text-align: center;
+  padding-bottom: 0;
+}
+
+#modalTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+#productModal .modal-body {
+  padding-top: 0;
+}
+
+#modalImg {
+  max-height: 260px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+#modalPrice {
+  font-size: 1.3rem;
+  color: #0d6efd;
+}
+
+#modalDesc {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+#addToCartBtn {
+  border-radius: 12px;
+  font-weight: 600;
+  padding: 10px 16px;
+}
 
 
 
