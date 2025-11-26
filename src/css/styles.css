@@ -372,6 +372,53 @@ button:hover,
   }
 }
 
+/* ------------------------------------------------ */
+/* IMÁGENES Y TARJETAS DE PRODUCTO (LuxeMarket)    */
+/* ------------------------------------------------ */
+
+/* Imagen principal dentro de las cards */
+#productsContainer .card img,
+#productsContainer .card-img-top {
+  max-height: 190px;
+  object-fit: contain;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+/* Cuerpo de la card organizado en columna */
+#productsContainer .card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Título del producto */
+#productsContainer .card .card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  min-height: 2.5em; /* para que todas queden parecidas en altura */
+}
+
+/* Descripción corta (si la hay) */
+#productsContainer .card .card-text {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Precio (si usan una clase price o similar) */
+#productsContainer .card .price,
+#productsContainer .card .product-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0d6efd;
+}
+
+/* Botón dentro de la card */
+#productsContainer .card .btn {
+  margin-top: 4px;
+}
+
 
 
 
