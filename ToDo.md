@@ -9,9 +9,9 @@ Se actualiza continuamente a medida que se agrega o completa trabajo.
 
 - [ ] Sistema de Favoritos completo:
   - [ ] Agregar botón “Agregar a favoritos” en el modal
-  - [ ] Toggle dinámico: agregar / sacar de favoritos
-  - [ ] Vista dedicada cuando se presiona “Favoritos”
-  - [ ] Guardar favoritos en localStorage
+  - [x] Toggle dinámico: agregar / sacar de favoritos
+  - [x] Vista dedicada cuando se presiona “Favoritos”
+  - [x] Guardar favoritos en localStorage
 
 - [x] Mejora del menú lateral:
   - [x] Estado activo (highlight)
@@ -40,7 +40,7 @@ Se actualiza continuamente a medida que se agrega o completa trabajo.
 
 - [ ] Animación de “explosión” cuando un producto se agrega a favoritos
 - [ ] Agregar un loader (spinner) al cargar productos desde la API
-- [ ] Botones más consistentes (tamaños, colores, hover)
+- [x] Botones más consistentes (tamaños, colores, hover)
 
 ---
 
