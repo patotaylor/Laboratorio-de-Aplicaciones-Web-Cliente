@@ -4,9 +4,7 @@
 // Estado del carrito
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// -----------------------------
 // Helpers
-// -----------------------------
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   // Disparar evento global
@@ -22,9 +20,7 @@ export function parseQuantity(quantity) {
   return typeof quantity === 'string' ? parseInt(quantity) : quantity;
 }
 
-// -----------------------------
 // Getters
-// -----------------------------
 export function getCart() {
   return cart;
 }
@@ -39,20 +35,18 @@ export function getCartTotal() {
   }, 0);
 }
 
-// -----------------------------
 // Mutaciones
-// -----------------------------
 export function addToCart(product, quantity = 1) {
   const existing = cart.find((p) => p.id === product.id);
 
   if (existing) {
     existing.quantity += quantity;
     saveCart();
-    return existing.quantity; // ← DEVUELVO LA NUEVA CANTIDAD
+    return existing.quantity;
   } else {
     cart.push({ ...product, quantity: quantity });
     saveCart();
-    return quantity; // ← devuelvo la cantidad agregada
+    return quantity;
   }
 }
 
@@ -79,5 +73,3 @@ export function clearCart() {
   cart = [];
   saveCart();
 }
-
-

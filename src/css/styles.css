@@ -1,16 +1,11 @@
-/* ------------------------------------------------ */
-/* RESET SIMPLE / TIPOGRAFÍA                       */
-/* ------------------------------------------------ */
+/* RESET SIMPLE / TIPOGRAFÍA */
 body {
   background: #f8f9fa;
   margin: 0;
   font-family: "Poppins", system-ui, sans-serif;
 }
 
-/* ------------------------------------------------ */
-/* NAVBAR / HEADER                                 */
-/* ------------------------------------------------ */
-
+/* NAVBAR / HEADER */
 .logo {
   font-size: 1.6rem;
   font-weight: bold;
@@ -20,13 +15,11 @@ body {
   max-width: 500px;
 }
 
-/* Navbar con efecto suave y separación */
 .navbar {
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   min-height: 64px;
 }
-
 /* Marca de la tienda */
 .navbar-brand {
   font-weight: 700;
@@ -43,10 +36,7 @@ body {
   color: #0d6efd;
 }
 
-/* ------------------------------------------------ */
-/* HERO                                             */
-/* ------------------------------------------------ */
-
+/* HERO */
 header section {
   background: linear-gradient(180deg, #212529, #343a40);
   padding-top: 4rem;
@@ -64,10 +54,7 @@ header section p {
   margin: 0 auto 1.5rem;
 }
 
-/* ------------------------------------------------ */
-/* MENÚ VERTICAL IZQUIERDO                         */
-/* ------------------------------------------------ */
-
+/* MENÚ VERTICAL IZQUIERDO */
 .menu-left {
   width: 180px;
   min-height: calc(100vh - 70px);
@@ -117,10 +104,18 @@ header section p {
   color: #ffd966;
 }
 
-/* ------------------------------------------------ */
-/* PRODUCTOS (CARDS)                               */
-/* ------------------------------------------------ */
+/* Categorías */
+#categoriesContainer {
+  margin-left: 0;
+}
 
+.category-btn {
+  font-size: 0.9rem !important;
+  padding: 8px 12px !important;
+  margin-left: 0;
+}
+
+/* PRODUCTOS (CARDS) */
 #productsContainer .card {
   border: none;
   border-radius: 12px;
@@ -142,10 +137,7 @@ header section p {
   border-radius: 8px;
 }
 
-/* ------------------------------------------------ */
-/* SIDEBAR DEL CARRITO                             */
-/* ------------------------------------------------ */
-
+/* SIDEBAR DEL CARRITO */
 .sidebar {
   position: fixed;
   top: 0;
@@ -208,6 +200,15 @@ header section p {
   transform: scale(1.2);
 }
 
+/* Total del carrito */
+.cart-total {
+  border: 1px solid #dee2e6;
+}
+
+.cart-total span:first-child {
+  font-size: 1.1rem;
+}
+
 /* Botones finales del carrito */
 .sidebar-footer .btn {
   border-radius: 16px;
@@ -215,10 +216,7 @@ header section p {
   padding: 10px;
 }
 
-/* ------------------------------------------------ */
-/* MODAL PRODUCTO                                  */
-/* ------------------------------------------------ */
-
+/* MODAL PRODUCTO */
 #productModal .modal-content {
   border-radius: 16px;
   padding: 10px;
@@ -281,10 +279,7 @@ header section p {
   padding-top: 0;
 }
 
-/* ------------------------------------------------ */
-/* BOTONES GENERALES                               */
-/* ------------------------------------------------ */
-
+/* BOTONES GENERALES */
 button,
 .btn {
   border-radius: 10px;
@@ -319,33 +314,31 @@ button:hover,
 #cartBtn {
   position: relative;
   overflow: visible;
+  padding: 8px 12px;
 }
 
 #cartBtn:hover {
   transform: scale(1.08);
 }
 
-/* badge dentro del botón, bien alineado */
+/* Badge del carrito en esquina superior derecha */
 #cartBtn .badge {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  transform: none !important;
-  font-size: 0.7rem;
-  padding: 4px 6px;
-  min-width: 20px;
-  height: 20px;
+  top: -5px;
+  right: -5px;
+  font-size: 0.65rem;
+  padding: 3px 6px;
+  min-width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  z-index: 10;
 }
 
-/* ------------------------------------------------ */
-/* FAVORITOS (ICONO ESTRELLA/CORAZÓN)             */
-/* ------------------------------------------------ */
-
+/* FAVORITOS (ICONO ESTRELLA/CORAZÓN) */
 .favorite-icon {
   color: #f6c400;
   transition: transform 0.2s ease;
@@ -355,10 +348,7 @@ button:hover,
   transform: scale(1.2);
 }
 
-/* ------------------------------------------------ */
-/* BUSCADOR (searchInput)                         */
-/* ------------------------------------------------ */
-
+/* BUSCADOR (searchInput) */
 #searchInput {
   border-radius: 14px;
   padding: 8px 16px;
@@ -378,18 +368,12 @@ button:hover,
   box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
 }
 
-/* ------------------------------------------------ */
-/* SWEETALERT2                                     */
-/* ------------------------------------------------ */
-
+/* SWEETALERT2 */
 .swal2-popup {
   font-size: 0.9rem !important;
 }
 
-/* ------------------------------------------------ */
-/* MEDIA QUERIES                                   */
-/* ------------------------------------------------ */
-
+/* MEDIA QUERIES */
 @media (max-width: 768px) {
   .menu-left {
     width: 70px;
@@ -416,10 +400,7 @@ button:hover,
   }
 }
 
-/* ------------------------------------------------ */
-/* BOTÓN VOLVER ARRIBA                             */
-/* ------------------------------------------------ */
-
+/* BOTÓN VOLVER ARRIBA */
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
@@ -468,10 +449,7 @@ button:hover,
   }
 }
 
-/* ------------------------------------------------ */
-/* IMÁGENES Y TARJETAS DE PRODUCTO (LuxeMarket)    */
-/* ------------------------------------------------ */
-
+/* IMÁGENES Y TARJETAS DE PRODUCTO */
 /* Imagen principal dentro de las cards */
 #productsContainer .card img,
 #productsContainer .card-img-top {
@@ -488,11 +466,12 @@ button:hover,
   flex-direction: column;
   gap: 6px;
 }
+
 /* Título del producto */
 #productsContainer .card .card-title {
   font-size: 0.95rem;
   font-weight: 600;
-  min-height: 2.5em; /* para que todas queden parecidas en altura */
+  min-height: 2.5em;
 }
 
 /* Descripción corta (si la hay) */
@@ -514,11 +493,38 @@ button:hover,
   margin-top: 4px;
 }
 
+/* RATING DE PRODUCTOS */
+.product-rating {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
 
+.product-rating .rating-value {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #333;
+}
 
+.product-rating i {
+  font-size: 0.7rem;
+}
 
+.product-rating small {
+  font-size: 0.7rem;
+}
 
+#modalRating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
 
+#modalRating i {
+  font-size: 1.1rem;
+}
 
-
-
+#modalRating .rating-value {
+  font-size: 1rem;
+}
