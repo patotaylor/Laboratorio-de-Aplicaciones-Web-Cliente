@@ -539,4 +539,91 @@ button:hover,
   z-index: 20;
 }
 
+/* MODO OSCURO */
+
+.dark-mode {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Transición suave */
+body,
+.dark-mode {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Navbar */
+.dark-mode .navbar {
+  background-color: #1f1f1f !important;
+  color: #fff;
+}
+
+/* Hero */
+.dark-mode .bg-dark {
+  background-color: #000 !important;
+}
+
+/* Sidebar izquierda */
+.dark-mode .menu-left {
+  background-color: #1b1b1b !important;
+  border-color: #333 !important;
+}
+
+/* Sidebar carrito */
+.dark-mode .sidebar {
+  background-color: #1f1f1f !important;
+  color: #fff;
+}
+
+/* Tarjetas de producto */
+.dark-mode .card {
+  background-color: #1e1e1e !important;
+  border-color: #333 !important;
+  color: #fff;
+}
+
+/* Contenedor total carrito */
+.dark-mode .cart-total {
+  background-color: #262626 !important;
+}
+
+/* Inputs */
+.dark-mode input.form-control {
+  background-color: #222;
+  color: #fff;
+  border-color: #555;
+}
+
+/* Botones */
+.dark-mode .btn-light {
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.dark-mode .btn-outline-primary {
+  color: #fff;
+  border-color: #fff;
+}
+
+.dark-mode .btn-outline-secondary {
+  color: #fff;
+  border-color: #888;
+}
+
+/* Modal */
+.dark-mode .modal-content {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* Botón scroll top */
+.dark-mode .scroll-to-top {
+  color: #fff;
+}
+
+/* Mensajes vacíos  */
+.dark-mode .empty-message {
+  color: #ddd;
+}
+
 
