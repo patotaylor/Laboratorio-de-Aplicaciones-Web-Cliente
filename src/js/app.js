@@ -48,8 +48,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   const clearCartBtn = document.getElementById("clearCart");
   const checkoutBtn = document.getElementById("checkoutBtn");
 
+  // NUEVO: select para ordenar y overlay de carga
+  const sortSelect = document.getElementById("sortSelect");
+  const loadingOverlay = document.getElementById("loadingOverlay");
+
+  const showLoading = () => {
+    if (loadingOverlay) loadingOverlay.classList.remove("d-none");
+  };
+
+  const hideLoading = () => {
+    if (loadingOverlay) loadingOverlay.classList.add("d-none");
+  };
+
   // Cargar productos
   let products = [];
+
+  showLoading();
 
   try {
     products = await fetchProducts();
@@ -57,6 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       showError("No se encontraron productos disponibles.", "Sin productos");
       showNoProductsMessage(productsContainer);
       window.allProducts = [];
+      hideLoading();
       return;
     }
     window.allProducts = products;
@@ -68,7 +83,32 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
     showNoProductsMessage(productsContainer);
     window.allProducts = [];
+    hideLoading();
     return;
+  } finally {
+    hideLoading();
+  }
+
+  // Helper para ordenar productos
+  function sortProducts(list, criterion) {
+    const sorted = [...list];
+
+    switch (criterion) {
+      case "price-asc":
+        sorted.sort((a, b) => a.price - b.price);
+        break;
+      case "price-desc":
+        sorted.sort((a, b) => b.price - a.price);
+        break;
+      case "name-asc":
+        sorted.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      default:
+        // sin orden extra
+        break;
+    }
+
+    return sorted;
   }
 
   // Callback reutilizable para abrir modal y agregar al carrito
@@ -128,7 +168,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         menuFavorites.classList.remove("active");
         btn.classList.add("active");
         searchInput.value = "";
-        showProducts(products.filter(p => p.category === category));
+
+        const filtered = products.filter(p => p.category === category);
+        const sortValue = sortSelect?.value || "default";
+        const finalList = sortProducts(filtered, sortValue);
+
+        showProducts(finalList);
       });
 
       categoriesContainer.appendChild(btn);
@@ -149,7 +194,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   function resetToAllProducts() {
     activateMenu(menuProducts);
     searchInput.value = "";
-    showProducts();
+    const sortValue = sortSelect?.value || "default";
+    const finalList = sortProducts(products, sortValue);
+    showProducts(finalList);
   }
 
   menuProducts.addEventListener("click", resetToAllProducts);
@@ -172,25 +219,83 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   menuFavorites.addEventListener("click", () => {
     activateMenu(menuFavorites);
-    showProducts(getFavorites(), true);
+    const favs = getFavorites();
+    const sortValue = sortSelect?.value || "default";
+    const finalList = sortProducts(favs, sortValue);
+    showProducts(finalList, true);
   });
 
-  // Buscador global
+  // Buscador global (mejorado: título + categoría + descripción + orden)
   searchInput.addEventListener("input", () => {
     const text = searchInput.value.toLowerCase().trim();
     const isFavoritesView = menuFavorites.classList.contains("active");
     const activeCategoryBtn = document.querySelector(".category-btn.active");
     const activeCategory = activeCategoryBtn?.getAttribute("data-category");
 
-    let active = isFavoritesView
+    let baseList = isFavoritesView
       ? getFavorites()
       : activeCategory
         ? products.filter(p => p.category === activeCategory)
         : products;
 
-    const filtered = active.filter((p) => p.title.toLowerCase().includes(text));
-    showProducts(filtered, isFavoritesView, text.length > 0);
+    let filtered = baseList;
+
+    if (text) {
+      filtered = baseList.filter((p) => {
+        const title = p.title.toLowerCase();
+        const category = (p.category || "").toLowerCase();
+        const description = (p.description || "").toLowerCase();
+
+        return (
+          title.includes(text) ||
+          category.includes(text) ||
+          description.includes(text)
+        );
+      });
+    }
+
+    const sortValue = sortSelect?.value || "default";
+    const finalList = sortProducts(filtered, sortValue);
+
+    showProducts(finalList, isFavoritesView, text.length > 0);
   });
+
+  // Ordenar productos desde el select
+  if (sortSelect) {
+    sortSelect.addEventListener("change", () => {
+      const text = searchInput.value.toLowerCase().trim();
+      const isFavoritesView = menuFavorites.classList.contains("active");
+      const activeCategoryBtn = document.querySelector(".category-btn.active");
+      const activeCategory = activeCategoryBtn?.getAttribute("data-category");
+
+      let baseList = isFavoritesView
+        ? getFavorites()
+        : activeCategory
+          ? products.filter(p => p.category === activeCategory)
+          : products;
+
+      let filtered = baseList;
+
+      if (text) {
+        filtered = baseList.filter((p) => {
+          const title = p.title.toLowerCase();
+          const category = (p.category || "").toLowerCase();
+          const description = (p.description || "").toLowerCase();
+
+          return (
+            title.includes(text) ||
+            category.includes(text) ||
+            description.includes(text)
+          );
+        });
+      }
+
+      const sortValue = sortSelect.value;
+      const finalList = sortProducts(filtered, sortValue);
+
+      showProducts(finalList, isFavoritesView, text.length > 0);
+    });
+  }
 
   // Helper para actualizar sidebar del carrito
   function updateCartSidebar() {
@@ -271,7 +376,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateCartBadge(getCartCount());
   window.addEventListener("favorites-updated", () => {
     if (menuFavorites.classList.contains("active")) {
-      showProducts(getFavorites(), true);
+      const favs = getFavorites();
+      const sortValue = sortSelect?.value || "default";
+      const finalList = sortProducts(favs, sortValue);
+      showProducts(finalList, true);
     }
   });
 
