@@ -528,3 +528,15 @@ button:hover,
 #modalRating .rating-value {
   font-size: 1rem;
 }
+/* LOADER DE CARGA DE PRODUCTOS  */
+.loading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 249, 250, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+
