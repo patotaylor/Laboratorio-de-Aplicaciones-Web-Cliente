@@ -38,11 +38,6 @@ export function renderProducts(container, products, onClickProduct) {
     col.innerHTML = `
       <div class="card h-100 shadow-sm p-2 product-card" data-id="${product.id}">
         
-        <!-- Categoría -->
-        <span class="badge bg-light text-dark mb-2">
-          ${product.category}
-        </span>
-
         <!-- Favorito -->
         <div class="d-flex justify-content-end mb-2">
           <span class="favorite-icon" style="font-size:22px; cursor:pointer;">
@@ -61,9 +56,9 @@ export function renderProducts(container, products, onClickProduct) {
           <div class="product-rating mb-2">
             <div class="d-flex align-items-center gap-1">
               ${stars}
-              <span class="rating-value">${rating.toFixed(1)}</span>
+              <span class="rating-value ms-1">${rating.toFixed(1)}</span>
             </div>
-            <small class="text-muted">(${ratingCount} reseñas)</small>
+            <small class="text-muted">(${ratingCount} ${ratingCount === 1 ? 'reseña' : 'reseñas'})</small>
           </div>
 
           <!-- Descripción -->
@@ -182,6 +177,17 @@ export function showToast(msg, icon = "success") {
 
 export function showToastFav(msg) {
   showToast(msg, "info");
+}
+
+// Mostrar mensaje de error
+export function showError(message, title = "Error") {
+  Swal.fire({
+    icon: "error",
+    title: title,
+    text: message,
+    confirmButtonText: "Aceptar",
+    confirmButtonColor: "#dc3545"
+  });
 }
 
 // Mensajes vacíos

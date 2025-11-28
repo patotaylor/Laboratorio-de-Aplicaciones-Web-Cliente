@@ -626,4 +626,21 @@ body,
   color: #ddd;
 }
 
+/* Rating en modo oscuro */
+.dark-mode .product-rating .rating-value {
+  color: #f1f1f1;
+}
+
+.dark-mode .product-rating small {
+  color: #bbb;
+}
+
+.dark-mode #modalRating .rating-value {
+  color: #f1f1f1;
+}
+
+.dark-mode #modalRating small {
+  color: #bbb;
+}
+
 

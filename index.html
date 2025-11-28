@@ -130,6 +130,14 @@
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container py-4">
+      <div class="d-flex justify-content-end mb-3">
+        <select id="sortSelect" class="form-select" style="max-width: 250px;" aria-label="Ordenar productos">
+          <option value="default">Ordenar por...</option>
+          <option value="price-asc">Precio: Menor a Mayor</option>
+          <option value="price-desc">Precio: Mayor a Menor</option>
+          <option value="name-asc">Nombre: A-Z</option>
+        </select>
+      </div>
       <section id="productsContainer" class="row g-3"></section>
     </main>
   </div>
