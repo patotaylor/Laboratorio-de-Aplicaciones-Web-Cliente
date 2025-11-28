@@ -22,7 +22,7 @@
   />
 </head>
 <body>
-   <!-- NAVBAR + HERO (mejorado por Ezequiel) -->
+   <!-- NAVBAR + HERO -->
   <header>
     <!-- NAVBAR SUPERIOR -->
     <nav class="navbar navbar-expand-lg bg-light shadow-sm sticky-top">
@@ -39,17 +39,27 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           
           <div class="d-flex align-items-center ms-auto gap-3">
-            <!-- BUSCADOR (MISMO ID QUE TU JS) -->
-            <div class="d-none d-md-block">
-              <input
-                type="text"
-                id="searchInput"
-                class="form-control"
-                placeholder="Buscar productos..."
-                aria-label="Buscar productos"
-              />
-            </div>
-            <!-- CARRITO (MISMOS IDs QUE TU JS) -->
+            <!-- BUSCADOR -->
+           <div class="d-none d-md-flex align-items-center gap-2">
+  <!-- BUSCADOR -->
+  <input
+    type="text"
+    id="searchInput"
+    class="form-control"
+    placeholder="Buscar productos..."
+    aria-label="Buscar productos"
+  />
+
+  <!-- SELECT DE ORDENAMIENTO -->
+  <select id="sortSelect" class="form-select w-auto" aria-label="Ordenar productos">
+    <option value="default">Ordenar</option>
+    <option value="price-asc">Precio: menor a mayor</option>
+    <option value="price-desc">Precio: mayor a menor</option>
+    <option value="name-asc">Nombre A-Z</option>
+  </select>
+</div>
+
+            <!-- CARRITO -->
             <button
               id="cartBtn"
               class="btn btn-outline-primary position-relative"
@@ -173,6 +183,7 @@
   <script type="module" src="./src/js/app.js"></script>
 </body>
 </html>
+
 
 
 
