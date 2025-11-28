@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const clearCartBtn = document.getElementById("clearCart");
   const checkoutBtn = document.getElementById("checkoutBtn");
 
+  // NUEVO: modo oscuro
+  const toggleDarkBtn = document.getElementById("toggleDarkMode");
+  const darkIcon = document.getElementById("darkIcon");
+  const body = document.body;
+
   // NUEVO: select para ordenar y overlay de carga
   const sortSelect = document.getElementById("sortSelect");
   const loadingOverlay = document.getElementById("loadingOverlay");
@@ -383,6 +388,33 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  
+  //        MODO OSCURO
+  
+  const savedDark = localStorage.getItem("dark-mode") === "true";
+
+  if (savedDark) {
+    body.classList.add("dark-mode");
+    if (darkIcon) {
+      darkIcon.classList.replace("bi-moon-fill", "bi-sun-fill");
+    }
+  }
+
+  if (toggleDarkBtn) {
+    toggleDarkBtn.addEventListener("click", () => {
+      const isDark = body.classList.toggle("dark-mode");
+      localStorage.setItem("dark-mode", isDark);
+
+      if (darkIcon) {
+        if (isDark) {
+          darkIcon.classList.replace("bi-moon-fill", "bi-sun-fill");
+        } else {
+          darkIcon.classList.replace("bi-sun-fill", "bi-moon-fill");
+        }
+      }
+    });
+  }
+
   // Botón volver arriba
   const scrollToTopBtn = document.getElementById("scrollToTopBtn");
   let scrollTimeout;
@@ -399,3 +431,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
+
